@@ -1,0 +1,29 @@
+# Generic
+BinOut/
+
+# IntelliJ
+.idea/
+cmake-build-*/
+
+# Visual Studio
+ipch/
+[Rr]elease/
+[Dd]ebug/
+*.sdf
+*.suo
+*.user
+*.opensdf
+helpers/cmake_install.cmake
+helpers/ZERO_CHECK.vcxproj.filters
+helpers/ZERO_CHECK.vcxproj
+helpers/SRO_DevKit.sln
+helpers/CMakeCache.txt
+helpers/ALL_BUILD.vcxproj.filters
+helpers/ALL_BUILD.vcxproj
+CMakeSettings.json
+helpers/.vs/
+.vs/
+helpers/CMakeFiles/
+helpers/source/
+helpers/Win32/
+out/

@@ -1,0 +1,53 @@
+variables:
+  registry: registry.gitlab.com/florian0/sro_devkit
+  
+
+stages:
+  - build
+  - deploy
+  - docs
+  - publish
+
+
+mkdocs:
+  stage: docs
+  image: 
+    name: squidfunk/mkdocs-material:5.5.2
+    entrypoint: [""]
+  script:
+    - mkdocs build -v
+  artifacts:
+    untracked: false
+    paths:
+      - site/
+    expire_in: 1 hour
+#  only:
+#    - devel
+
+doxygen:
+  stage: docs
+  image: ${registry}:doxygen
+  script:
+    - doxygen
+  artifacts:
+    untracked: false
+    paths:
+      - doxygen/html
+    expire_in: 1 hour
+#  only:
+#    - devel
+
+
+pages:
+  stage: publish
+  dependencies:
+    - mkdocs
+    - doxygen
+  script:  
+    - mv site/ public/
+    - mkdir public/doxygen/
+    - mv doxygen/html/* public/doxygen
+  artifacts:
+    paths:
+      - public/
+    expire_in: 1 hour
